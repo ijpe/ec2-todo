@@ -6,8 +6,9 @@ set :rvm_ruby_version, '2.3.0'
 
 set :user, 'ubuntu'
 set :application, 'todoapp'
-set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}/releases"
+set :deploy_to, "/home/#{fetch(:user)}/apps/#{fetch(:application)}"
 set :repo_url, 'git@github.com:ijpe/ec2-todo.git'
+# set :repo_url, 'https://github.com/ijpe/ec2-todo.git'
 set :branch, :master
 set :keep_releases, 5
 set :ssh_options, { forward_agent: true, user: fetch(:user) }
@@ -17,8 +18,8 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundler}
 set :puma_threads, [4,16]
 set :puma_workers, 0
 
-set :pty, true
-set :use_sude, false
+set :pty, false
+set :use_sudo, false
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}"
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
